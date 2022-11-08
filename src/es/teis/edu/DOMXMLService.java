@@ -61,15 +61,11 @@ public class DOMXMLService implements IXMLService {
                 partidos.add(partido);
             }
             
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(DOMXMLService.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SAXException ex) {
-            Logger.getLogger(DOMXMLService.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(DOMXMLService.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (Exception ex) {
+            throw new LecturaException("Error", ruta);
+        } 
 
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return partidos;
     }
 
 }
