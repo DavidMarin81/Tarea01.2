@@ -8,18 +8,13 @@ import es.teis.data.exceptions.LecturaException;
 import es.teis.dataXML.IXMLService;
 import es.teis.model.Partido;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 /**
  *
@@ -29,7 +24,6 @@ public class DOMXMLService implements IXMLService {
 
     @Override
     public ArrayList<Partido> leerPartidos(String ruta, float umbral) throws LecturaException {
-
         long id = 0L;
         String nombre = "";
         int votos = 0;
@@ -39,13 +33,12 @@ public class DOMXMLService implements IXMLService {
         ArrayList<Partido> partidos = new ArrayList<>();
 
         try {
-            File inputFile = new File("src\\docs\\elecciones.xml");
+            File inputFile = new File(ruta);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            //Aqui rompe el programa
             Document doc = dBuilder.parse(inputFile);
-
             doc.getDocumentElement().normalize();
-
             NodeList nList = doc.getElementsByTagName(IXMLService.PARTIDO_TAG);
             for (int i = 0; i < nList.getLength(); i++) {
                 Node nNode = nList.item(i);
@@ -61,6 +54,7 @@ public class DOMXMLService implements IXMLService {
                         
                         partido = new Partido(id, nombre, votos, porcentaje);
                         partidos.add(partido);
+                        
                     }
 
                 }

@@ -4,11 +4,14 @@
  */
 package es.teis.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author maria
  */
-public class Partido{
+//Se implementa con Serializable para poder serializar los tipos primitivos
+public class Partido implements Serializable{
     
     private long id;
     private String nombre;
