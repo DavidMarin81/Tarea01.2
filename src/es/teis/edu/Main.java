@@ -4,6 +4,7 @@
  */
 package es.teis.edu;
 
+import es.teis.data.exceptions.LecturaException;
 import es.teis.model.Partido;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -22,10 +23,18 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws LecturaException {
 
 //completa aquí: 
+        DOMXMLService dom = new DOMXMLService();
+        PartidoObjectPersistencia pop = new PartidoObjectPersistencia();
+
+        ArrayList<Partido> partidos = new ArrayList<>();
+
+        partidos = dom.leerPartidos(ELECCIONES_INPUT_FILE, UMBRAL_PORCENTAJE);
         mostrar(partidos);
+        pop.escribir(partidos, ELECCIONES_OUTPUT_FILE);
+        pop.leerTodo(ELECCIONES_OUTPUT_FILE);
 
     }
 
@@ -33,7 +42,6 @@ public class Main {
         System.out.println("Se han leído: ");
         for (Partido partido : partidos) {
             System.out.println(partido);
-
         }
     }
 
