@@ -54,12 +54,12 @@ public class PartidoObjectPersistencia implements IPersistencia, Serializable {
             } while (aux != null);
 
         } catch (EOFException ex) {
-            //Fin de lectura de fichero
-            //Se imprimen los datos leidos del xml "elecciones_output.xml"
-            System.out.println("\nDatos del fichero elecciones_output.xml");
-            for (Partido p : partidos) {
-                System.out.println(p.toString());
-            }
+//            Fin de lectura de fichero
+//            Se imprimen los datos leidos del xml "elecciones_output.xml"
+//            System.out.println("\nDatos del fichero elecciones_output.xml");
+//            for (Partido p : partidos) {
+//                System.out.println(p.toString());
+//            }
         } catch (IOException ex) {
             Logger.getLogger(PartidoObjectPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) { 
