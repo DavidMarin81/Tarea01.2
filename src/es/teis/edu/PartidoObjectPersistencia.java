@@ -55,6 +55,7 @@ public class PartidoObjectPersistencia implements IPersistencia, Serializable {
 
         } catch (EOFException ex) {
             //Fin de lectura de fichero
+            //Se imprimen los datos leidos del xml "elecciones_output.xml"
             System.out.println("\nDatos del fichero elecciones_output.xml");
             for (Partido p : partidos) {
                 System.out.println(p.toString());
