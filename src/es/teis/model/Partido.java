@@ -10,7 +10,7 @@ import java.io.Serializable;
  *
  * @author maria
  */
-//Se implementa con Serializable para poder serializar los tipos primitivos
+//Se implementa con Serializable para poder serializar los datos de Partido
 public class Partido implements Serializable{
     
     private long id;

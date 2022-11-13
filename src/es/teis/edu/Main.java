@@ -23,7 +23,7 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws LecturaException {
+    public static void main(String[] args) {
 
 //completa aquí: 
         DOMXMLService dom = new DOMXMLService();
@@ -31,10 +31,16 @@ public class Main {
 
         ArrayList<Partido> partidos = new ArrayList<>();
 
-        partidos = dom.leerPartidos(ELECCIONES_INPUT_FILE, UMBRAL_PORCENTAJE);
-        mostrar(partidos);
-        pop.escribir(partidos, ELECCIONES_OUTPUT_FILE);
-        pop.leerTodo(ELECCIONES_OUTPUT_FILE);
+        try {
+            partidos = dom.leerPartidos(ELECCIONES_INPUT_FILE, UMBRAL_PORCENTAJE);
+            mostrar(partidos);
+            pop.escribir(partidos, ELECCIONES_OUTPUT_FILE);
+            pop.leerTodo(ELECCIONES_OUTPUT_FILE);
+        } catch (LecturaException ex) {
+            //Se imprimen las pilas de los errores
+            ex.printStackTrace();
+            System.out.println("Se ha producido un error de lectura");
+        }
 
     }
 

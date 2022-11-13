@@ -12,7 +12,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,15 +20,14 @@ import java.util.logging.Logger;
  *
  * @author David Marín
  */
-//Se tiene que implementar la interface Serializable
-public class PartidoObjectPersistencia implements IPersistencia, Serializable {
+public class PartidoObjectPersistencia implements IPersistencia {
 
     @Override
     public void escribir(ArrayList<Partido> partidos, String ruta) {
         try (
                  FileOutputStream fos = new FileOutputStream(ruta);  ObjectOutputStream oos = new ObjectOutputStream(fos);) {
             for (Partido p : partidos) {
-                //Instanceof Partido o Serializable???
+                //Se comprueba que el objeto sea de tipo Partido
                 if (p instanceof Partido) {
                     oos.writeObject(p);
                 }
@@ -48,7 +46,8 @@ public class PartidoObjectPersistencia implements IPersistencia, Serializable {
             Object aux;
             do {
                 aux = ois.readObject();
-                if (aux instanceof Serializable) {
+                if (aux instanceof Partido) {
+                    //Se hace un casting ya que aux es de tipo Object
                     partidos.add((Partido) aux);
                 }
             } while (aux != null);

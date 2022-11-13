@@ -62,7 +62,7 @@ public class DOMXMLService implements IXMLService {
             }
 
         } catch (Exception ex) {
-            throw new LecturaException("Error", ruta);
+            throw new LecturaException("Error de lectura del fichero", ruta);
         }
 
         return partidos;
