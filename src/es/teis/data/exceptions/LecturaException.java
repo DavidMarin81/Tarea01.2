@@ -22,6 +22,5 @@ public class LecturaException extends Exception {
         return rutaFichero;
     }
     
-    
 
 }
